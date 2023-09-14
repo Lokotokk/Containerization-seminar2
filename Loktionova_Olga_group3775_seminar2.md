@@ -4,11 +4,12 @@
 
 *Задание по желанию ..*    
 3) добавить автозапуск контейнеру, перезагрузить ОС и убедиться, что контейнер действительно запустился самостоятельно  
-4) ''при создании указать файл, куда записывать логи  
-5) ''после перезагрузки проанализировать логи
-   
+
 1. Cоздаем контейнер:  
-   `lxc-create -n hmseminar2 -t ubuntu`  
+   `lxc-create -n hmseminar2 -t ubuntu`
+   
+    ![](https://github.com/Lokotokk/Containerization-seminar2/blob/main/images/create.png) 
+
    Запуск:  
    `lxc-start -n hmseminar2`  
    Вход:  
@@ -18,13 +19,19 @@
    Выход:  
    `exit`  
    Закрываем:  
-   `lxc-stop -n hmseminar2`  
-
-2. Открываем конфигурационный файл:  
+   `lxc-stop -n hmseminar2`
+ 
+   ![](https://github.com/Lokotokk/Containerization-seminar2/blob/main/images/start.png)
+   
+3. Открываем конфигурационный файл:  
    `nano /var/lib/lxc/hmseminar1/config`  
-
+   
+    ![](https://github.com/Lokotokk/Containerization-seminar2/blob/main/images/memory.png)  
+ 
    Добавляем настройку(ограничение памяти):  
       `lxc.cgroup2.memory.max = 256M`  
+
+   ![](https://github.com/Lokotokk/Containerization-seminar2/blob/main/images/memory1.png)   
    
    Проверяем, что ограничение работает:  
       `lxc-start -n hmseminar2`  
@@ -32,8 +39,11 @@
       `free -m`  
       `exit`  
       `lxc-stop -n hmseminar2`
+
+  ![](https://github.com/Lokotokk/Containerization-seminar2/blob/main/images/memory3.png)  
    
- 3. Открываем конфигурационный файл:  
+   
+ 5. Открываем конфигурационный файл:  
    `nano /var/lib/lxc/hmseminar1/config`
 
     Добавляем автозапуск:
@@ -42,3 +52,5 @@
     `lxc.start.delay = 15`   
     `lxc.start.order = 50`  
 
+      ![](https://github.com/Lokotokk/Containerization-seminar2/blob/main/images/autostart.png)  
+      ![](https://github.com/Lokotokk/Containerization-seminar2/blob/main/images/autostart1.png)
